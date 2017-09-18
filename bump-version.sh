@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Get BUMP_LEVEL env variable to determine which figure to update
 NEW_VERSION=""
 
@@ -37,4 +37,4 @@ git commit -m "${COMMIT_MESSAGE}"
 git tag -a -m "${COMMIT_MESSAGE}" "${TAG}"
 
 # Push tag
-#git push --tags
+git push origin --tags
