@@ -10,8 +10,6 @@ IFS='.'
 read -a LEVELS <<< "${OLD_VERSION}"
 IFS="$OIFS"
 
-echo $OLD_VERSION
-
 MAJOR=${LEVELS[0]}
 MINOR=${LEVELS[1]}
 PATCH=${LEVELS[2]}
@@ -27,16 +25,14 @@ fi
 
 NEW_VERSION=${MAJOR}.${MINOR}.${PATCH}
 
-echo $NEW_VERSION
-
 echo $NEW_VERSION > VERSION
 
 TAG="v"${NEW_VERSION}
 
 # Add and commit the tag
 git add .
-git commit -m "Updates version: "${TAG}
-git tag -a "Tag "${TAG}
+git commit -m "Updates to version: "${TAG}
+git tag -a ${TAG}
 
 # Push tag
 #git push --tags
