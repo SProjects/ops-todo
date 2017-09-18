@@ -42,6 +42,7 @@ jobs:
 
     steps:
       - checkout
+      - run: sleep 60
       - run: whoami
       - restore_cache:
           keys:
