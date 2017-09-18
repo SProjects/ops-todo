@@ -37,4 +37,5 @@ git commit -m "${COMMIT_MESSAGE}"
 git tag -a -m "${COMMIT_MESSAGE}" "${TAG}"
 
 # Push tag
-git push origin --tags
+git push --tags
+git push origin master

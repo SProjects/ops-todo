@@ -187,5 +187,3 @@ workflows:
       - deployment:
           requires:
             - bump-patch
-            - bump-minor
-            - bump-major
