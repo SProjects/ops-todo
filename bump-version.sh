@@ -29,10 +29,12 @@ echo $NEW_VERSION > VERSION
 
 TAG="v"${NEW_VERSION}
 
+COMMIT_MESSAGE="Updates to version: "${TAG}
+
 # Add and commit the tag
 git add .
-git commit -m "Updates to version: "${TAG}
-git tag -a ${TAG}
+git commit -m "${COMMIT_MESSAGE}"
+git tag -a -m "${COMMIT_MESSAGE}" "${TAG}"
 
 # Push tag
 #git push --tags
