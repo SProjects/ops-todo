@@ -186,4 +186,6 @@ workflows:
             - coverage
       - deployment:
           requires:
-            - coverage
+            - bump-patch
+            - bump-minor
+            - bump-major
