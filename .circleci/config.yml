@@ -100,7 +100,7 @@ jobs:
           name: run tests
           command: |
             source venv/bin/activate
-            nosetests --rednose --with-coverage --cover-inclusive --cover-package=bucketlist --cover-erase --cover-html
+            nosetests --rednose --with-coverage --cover-inclusive --cover-package=todo --cover-erase --cover-html
             COVERALLS_REPO_TOKEN=NbqVl5cJLcD5rtNVQCd4N4kRORntFwykB coveralls
 
       - store_artifacts:
