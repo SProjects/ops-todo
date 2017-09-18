@@ -39,6 +39,5 @@ requests==2.18.4
 six==1.10.0
 SQLAlchemy==1.1.14
 termstyle==0.1.11
-todo==0.1
 urllib3==1.22
 Werkzeug==0.12.2
