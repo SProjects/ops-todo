@@ -85,18 +85,25 @@ jobs:
           path: test-reports
           destination: test-reports
   deployment:
-    - run: bash .circleci/setup-heroku.sh
-    - add_ssh_keys:
-        fingerprints:
-          - "39:79:40:24:11:64:bc:6f:e8:b4:be:7a:18:c5:b6:84"
-    - deploy:
-        name: Deploy Master to Heroku
-        command: |
-          if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            git push heroku master
-            heroku run python manage.py db upgrade
-            heroku restart
-          fi
+    docker:
+      - image: circleci/python:2.7.13
+
+    working_directory: ~/app
+
+    steps:
+      - checkout
+      - run: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "39:79:40:24:11:64:bc:6f:e8:b4:be:7a:18:c5:b6:84"
+      - deploy:
+          name: Deploy Master to Heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push heroku master
+              heroku run python manage.py db upgrade
+              heroku restart
+            fi
 
 workflows:
   version: 2
