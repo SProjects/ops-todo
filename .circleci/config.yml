@@ -1,3 +1,19 @@
+defaults: &defaults
+  docker:
+    - image: circleci/python:2.7.13
+      environment:
+        PGUSER: circleci
+        TODO_ENV: testing
+        DATABASE_URL: postgresql://circleci@localhost/todo_test
+
+    - image: circleci/postgres:9.6
+      environment:
+        POSTGRES_USER: circleci
+        POSTGRES_DB: todo_test
+        POSTGRES_PASSWORD: ""
+
+  working_directory: ~/app
+
 version: 2
 jobs:
   build:
@@ -25,21 +41,7 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
   test:
-    docker:
-      - image: circleci/python:2.7.13
-        environment:
-          PGUSER: circleci
-          TODO_ENV: testing
-          DATABASE_URL: postgresql://circleci@localhost/todo_test
-
-      - image: circleci/postgres:9.6
-        environment:
-          POSTGRES_USER: circleci
-          POSTGRES_DB: todo_test
-          POSTGRES_PASSWORD: ""
-
-    working_directory: ~/app
-
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -63,21 +65,7 @@ jobs:
             source venv/bin/activate
             nosetests --rednose
   coverage:
-    docker:
-      - image: circleci/python:2.7.13
-        environment:
-          PGUSER: circleci
-          TODO_ENV: testing
-          DATABASE_URL: postgresql://circleci@localhost/todo_test
-
-      - image: circleci/postgres:9.6
-        environment:
-          POSTGRES_USER: circleci
-          POSTGRES_DB: todo_test
-          POSTGRES_PASSWORD: ""
-
-    working_directory: ~/app
-
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -106,6 +94,9 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
+  no-bump:
+    steps:
+      - run: exit 0
   bump-patch:
     docker:
       - image: circleci/python:2.7.13
@@ -138,7 +129,7 @@ jobs:
 
     steps:
       - checkout
-      - run: bash bump-version.sh
+      - run: bash ./bump-version.sh
 
   deployment:
     docker:
@@ -172,6 +163,10 @@ workflows:
       - coverage:
           requires:
             - test
+      - no-bump:
+          type: approval
+          requires:
+            - coverage
       - bump-patch:
           type: approval
           requires:
@@ -186,4 +181,7 @@ workflows:
             - coverage
       - deployment:
           requires:
+            - no-bump
             - bump-patch
+            - bump-minor
+            - bump-major

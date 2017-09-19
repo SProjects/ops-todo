@@ -19,8 +19,11 @@ if [ "$BUMP_LEVEL" == "patch" ]; then
 	PATCH="$(($PATCH + 1))"
 elif [ "$BUMP_LEVEL" == "minor" ]; then
     MINOR="$(($MINOR + 1))"
+    PATCH=0
 else
     MAJOR="$(($MAJOR + 1))"
+    MINOR=0
+    PATCH=0
 fi
 
 NEW_VERSION=${MAJOR}.${MINOR}.${PATCH}
@@ -38,4 +41,5 @@ git tag -a -m "${COMMIT_MESSAGE}" "${TAG}"
 
 # Push tag
 git push --tags
+sleep 10
 git push origin master
