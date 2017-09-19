@@ -171,8 +171,7 @@ workflows:
           requires:
             - test
       - bump-patch:
-          requires:
-            - build
+          type: approval
       - bump-minor:
           type: approval
       - bump-major:
