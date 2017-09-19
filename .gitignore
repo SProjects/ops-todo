@@ -94,3 +94,5 @@ ENV/
 
 cover
 
+stick.sh
+bump-version.sh

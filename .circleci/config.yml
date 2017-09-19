@@ -135,7 +135,7 @@ jobs:
       - run:
           name: Push version commit
           command: |
-            git push --tags origin master
+            git push --tags origin master --force
 
   bump-minor:
     <<: *bump-config
