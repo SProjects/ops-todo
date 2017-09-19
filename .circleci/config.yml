@@ -94,6 +94,18 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
+  bump-version-patch: &bump-version-config
+    docker:
+      - image: circleci/python:2.7.13
+
+    working_directory: ~/app
+
+    steps:
+      - run: exit 0
+  bump-version-minor:
+    <<: *bump-version-config
+  bump-version-major:
+    <<: *bump-version-config
   bump-patch: &bump-config
     docker:
       - image: circleci/python:2.7.13
@@ -170,12 +182,21 @@ workflows:
       - coverage:
           requires:
             - test
+      - bump-version-patch:
+          type: approval
+      - bump-version-minor:
+          type: approval
+      - bump-version-major:
+          type: approval
       - bump-patch:
-          type: approval
+          requires:
+            - bump-version-patch
       - bump-minor:
-          type: approval
+          requires:
+            - bump-version-minor
       - bump-major:
-          type: approval
+          requires:
+            - bump-version-major
       - deployment:
           requires:
             - coverage
