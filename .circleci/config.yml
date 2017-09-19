@@ -94,14 +94,7 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
-  no-bump:
-    docker:
-      - image: circleci/python:2.7.13
-
-    working_directory: ~/app
-    steps:
-      - run: exit 0
-  bump-patch:
+  bump-patch: &bump-config
     docker:
       - image: circleci/python:2.7.13
         environment:
@@ -111,29 +104,39 @@ jobs:
 
     steps:
       - checkout
-      - run: bash bump-version.sh
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - v1-dependencies-
+      - run:
+          name: Create bump config
+          command: |
+            source venv/bin/activate
+
+            git config --global user.email "ci@circleci"
+            git config --global user.name "Circle CI"
+
+            bumpversion --current-version "$(cat VERSION)" --message "[skip ci] Bump version: {current_version} -> {new_version}" $BUMP_LEVEL
+      - add_ssh_keys:
+          fingerprints:
+            - "70:20:36:38:3b:3a:b4:a5:c3:08:7e:2e:54:04:a6:1c"
+      - run:
+          name: Push version commit
+          command: |
+            git push --tags origin master
+
   bump-minor:
+    <<: *bump-config
     docker:
       - image: circleci/python:2.7.13
         environment:
           BUMP_LEVEL: minor
-
-    working_directory: ~/app
-
-    steps:
-      - checkout
-      - run: bash bump-version.sh
   bump-major:
+    <<: *bump-config
     docker:
       - image: circleci/python:2.7.13
         environment:
           BUMP_LEVEL: major
-
-    working_directory: ~/app
-
-    steps:
-      - checkout
-      - run: bash ./bump-version.sh
 
   deployment:
     docker:
@@ -167,25 +170,13 @@ workflows:
       - coverage:
           requires:
             - test
-      - no-bump:
-          type: approval
-          requires:
-            - coverage
       - bump-patch:
-          type: approval
           requires:
-            - coverage
+            - build
       - bump-minor:
           type: approval
-          requires:
-            - coverage
       - bump-major:
           type: approval
-          requires:
-            - coverage
       - deployment:
           requires:
-            - no-bump
-            - bump-patch
-            - bump-minor
-            - bump-major
+            - coverage
