@@ -123,7 +123,6 @@ jobs:
       - run:
           name: Push version commit
           command: |
-            git remote add origin git@github.com:SProjects/ops-todo.git
             git push --tags origin master
 
   bump-minor:
