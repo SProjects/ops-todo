@@ -39,7 +39,6 @@ jobs:
           POSTGRES_PASSWORD: ""
 
     working_directory: ~/app
-
     steps:
       - checkout
       - run:
@@ -106,6 +105,15 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
+  no-bump:
+    docker:
+      - image: circleci/python:2.7.13
+        environment:
+          BUMP_LEVEL: patch
+
+    working_directory: ~/app
+    steps:
+      - run: exit 0
   bump-patch:
     docker:
       - image: circleci/python:2.7.13
@@ -138,7 +146,7 @@ jobs:
 
     steps:
       - checkout
-      - run: bash bump-version.sh
+      - run: bash ./bump-version.sh
 
   deployment:
     docker:
@@ -172,6 +180,10 @@ workflows:
       - coverage:
           requires:
             - test
+      - no-bump:
+          type: approval
+          requires:
+            - coverage
       - bump-patch:
           type: approval
           requires:
@@ -186,4 +198,7 @@ workflows:
             - coverage
       - deployment:
           requires:
+            - no-bump
             - bump-patch
+            - bump-minor
+            - bump-major
