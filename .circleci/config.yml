@@ -104,9 +104,15 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - v1-dependencies-
       - run:
           name: Create bump config
           command: |
+            source venv/bin/activate
+            
             git config --global user.email "ci@circleci"
             git config --global user.name "Circle CI"
 
