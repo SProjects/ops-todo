@@ -34,11 +34,13 @@ Complete list of Management and code contributors to Reference Application 1.0
 
 ***Facilitation team*** 
 >1. Badie 
-2. Chief Bube 
+>2. Chief Bube 
 
 ## **All Modules included in the release:** 
 
 > **App functionality module:** 
+
+
 | Module | version 
 | ------------- |:-------------:| 
 | User login | 1.0.1-alpha.1 
@@ -47,7 +49,10 @@ Complete list of Management and code contributors to Reference Application 1.0
 | Update to do | 1.0.1-alpha.1 
 | Delete to do | 1.0.1-alpha.1 
 
+
 > **API developer module:** 
+
+
 | Module | version | Future Plan | Details| 
 | ------------- |:-------------:| -----:| -----:| 
 | to-do API | 1.0.1-Beta.2 | 1.0.1-alpha.2| All db data access
