@@ -13,7 +13,7 @@ During the release process, the developer team was really approachable for any r
 
 ## **Feature highlights from Reference Application 1.0.1:** 
 **MVP** 
->1. User login 
+1. User login 
 2. Add todo tasks 
 3. List todo tasks 
 4. Delete todo tasks 
@@ -22,8 +22,8 @@ During the release process, the developer team was really approachable for any r
 ## **Application Contributors** 
 
 Complete list of Management and code contributors to Reference Application 1.0.1
-***Release Engineering team*** 
->1. David 
+**Release Engineering team** 
+1. David 
 2. Daniel 
 3. Flavian 
 4. Natalie 
@@ -31,12 +31,12 @@ Complete list of Management and code contributors to Reference Application 1.0.1
 6. Vicky 
 
 ***Facilitation team*** 
->1. Badie 
->2. Chief Bube 
+1. Badie 
+2. Chief Bube 
 
 ## **All Modules included in the release:** 
 
-> **App functionality module:** 
+**App functionality module:** 
 
 
 | Module | version 
@@ -48,7 +48,7 @@ Complete list of Management and code contributors to Reference Application 1.0.1
 | Delete to do | 1.0.1-alpha.1 
 
 
-> **API developer module:** 
+**API developer module:** 
 
 
 | Module | version | Future Plan | Details| 

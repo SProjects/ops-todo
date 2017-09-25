@@ -4,10 +4,10 @@
 The current release procedure for todo application involves a combination of an automated release script and a few manual steps. Our goal is to ensure that the Future versions will automate more of the process, if not all.
 
 ### **Release Procedure**
->**This is the standard release procedure for releasing todo app.**
->
+**This is the standard release procedure for releasing todo app.**
+
 We haven't really followed the proper maintenance branch approach, thus including all affiliated packages of the MVP on a single branch (master) but prospective better releases will see us adopt better practices as far as branching is concerned. 
->
+
 Being the first version (initial), we have not included the "what's new section" that would show the major upgrades since the previous version was released. From the feedback that we shall be getting in the next few months, we shall include;
  
 > *issues*

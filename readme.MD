@@ -5,7 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Introduction
-AIt is our understanding that professionals have a hard time keeping track of the different tasks they must perform while at work. The ToDo application intends to provide a we b application that will allows the busy professionals note their task so they can easily get reminders and check off the completed items.
+It is our understanding that professionals have a hard time keeping track of the different tasks they must 
+perform while at work. The ToDo application intends to provide a we b application that will allows the busy 
+professionals note their task so they can easily get reminders and check off the completed items.
 
 ## Technology stack
 - Flask
