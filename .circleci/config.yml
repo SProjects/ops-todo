@@ -166,8 +166,9 @@ jobs:
           command: |
             git config --global user.email "ci@circleci"
             git config --global user.name "Circle CI"
+            git checkout master
             git merge --no-ff develop -m "[skip ci] Merges develop build `$CIRCLE_BUILD_NUM` into master"
-            git push origin master
+            git push origin master --force
 
   deployment:
     docker:
@@ -184,8 +185,10 @@ jobs:
       - deploy:
           name: Deploy Master to Heroku
           command: |
+            git checkout master
+            export CIRCLE_BRANCH=master
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              git push heroku master
+              git push heroku master --force
               heroku run python manage.py db upgrade
               heroku restart
             fi
@@ -231,6 +234,3 @@ workflows:
       - deployment:
           requires:
             - automate-merging
-          filters:
-            branches:
-              only: master
