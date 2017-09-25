@@ -2,11 +2,11 @@
 
 ### ***Introduction/summary*** 
 
-It is our understanding that professionals have a hard time keeping track of the different tasks they must perform while at work. The ToDo application intends to provide a we b application that will allows the busy professionals note their task so they can easily get reminders and check off the completed items. 
+It is our understanding that professionals have a hard time keeping track of the different tasks they must perform while at work. The ToDo application intends to provide a web application that will allows the busy professionals note their task so they can easily get reminders and check off the completed items. 
 
 ### ***Release requirements*** 
 
-**MVP** 
+**MVP ( minimum viable product) ** 
 >1. User login 
 2. Add todo tasks 
 3. List todo tasks 
@@ -15,6 +15,9 @@ It is our understanding that professionals have a hard time keeping track of the
 
 ### ***Release Date***
 >20th September 2017
+
+### ***Release To;***
+>The initial release is working only for web based platforms. The application can be acccessed using any device on the web. Release 2 will consider Mobile platforms as well as other factors to enable smooth compatibility and support.
 
 ### ***Rollout overview***
 
