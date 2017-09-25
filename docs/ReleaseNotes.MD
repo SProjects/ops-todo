@@ -1,19 +1,17 @@
-# **Release Notes 1.0** 
+# **Release Notes 1.0.1** 
 
 ***Content*** 
-> Introducing Reference Application 1.0 
+> Introducing Reference Application 1.0.1 
 > Application Contributors 
 > All Modules included in the release: 
 
-## **Introducing Reference Application 1.0** 
+## **Introducing Reference Application 1.0.1** 
 
-This being the initial release , we are glad to introduce 1.0 to the community which had a scheduled internally of October 2017. The Reference Application includes a release of the fully functional MVP and the initial version is to be versioned further with every improvement towards the subsequent future releases. 
+This being the initial release , we are glad to introduce 1.0 to the community which had a scheduled internally of October 2017. The Reference Application includes a release of the fully functional MVP (minimum viable product) and the initial version is to be versioned further with every improvement towards the subsequent future releases. 
 
-During the release process, the developer team was really approachable for any release tips to enable a successful initial milestone from the few who had the chance to use the prototyped MVP. Additionally, the team ensured speed in getting the modules worked upon and ready for the release. 
+During the release process, the developer team was really approachable for any release tips to enable a successful initial milestone from the few who had the chance to use the prototyped MVP (minimum viable product). Additionally, the team ensured speed in getting the modules worked upon and ready for the release. 
 
-Special appreciation go to the developer team ( Flavian, Nana, David, Scott, Vicky, Daniel) and the facilitation team (Badie and Chief Bube) for leading the technical issues required for the release to be successful. 
-
-## **Feature highlights from Reference Application 1.0:** 
+## **Feature highlights from Reference Application 1.0.1:** 
 **MVP** 
 >1. User login 
 2. Add todo tasks 
@@ -23,7 +21,7 @@ Special appreciation go to the developer team ( Flavian, Nana, David, Scott, Vic
 
 ## **Application Contributors** 
 
-Complete list of Management and code contributors to Reference Application 1.0 
+Complete list of Management and code contributors to Reference Application 1.0.1
 ***Release Engineering team*** 
 >1. David 
 2. Daniel 
