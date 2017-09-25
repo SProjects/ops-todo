@@ -166,7 +166,7 @@ jobs:
           command: |
             git config --global user.email "ci@circleci"
             git config --global user.name "Circle CI"
-            git merge --no-ff develop -m "[skip ci] Merges develop build ${CIRCLE_BUILD_NUM} into master"
+            git merge --no-ff develop -m "[skip ci] Merges develop build `$CIRCLE_BUILD_NUM` into master"
             git push origin master
 
   deployment:
