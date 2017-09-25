@@ -150,6 +150,28 @@ jobs:
         environment:
           BUMP_LEVEL: major
 
+  automate-merging:
+    docker:
+      - image: circleci/python:2.7.13
+
+    working_directory: ~/app
+
+    steps:
+      - checkout
+      - run:
+          name: Configure git user
+          command: |
+            git config --global user.email "ci@circleci"
+            git config --global user.name "Circle CI"
+      - add_ssh_keys:
+          fingerprints:
+            - "70:20:36:38:3b:3a:b4:a5:c3:08:7e:2e:54:04:a6:1c"
+      - run:
+          name: merge develop into master
+          command: |
+            git merge --no-ff develop -m "[skip ci] Merges develop build ${CIRCLE_BUILD_NUM} into master"
+            git push origin master
+
   deployment:
     docker:
       - image: circleci/python:2.7.13
@@ -175,13 +197,22 @@ workflows:
   version: 2
   build_test_coverage_and_deployment:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: develop
       - test:
           requires:
             - build
+          filters:
+            branches:
+              only: develop
       - coverage:
           requires:
             - test
+          filters:
+            branches:
+              only: develop
       - bump-version-patch:
           type: approval
       - bump-version-minor:
@@ -197,6 +228,12 @@ workflows:
       - bump-major:
           requires:
             - bump-version-major
-      - deployment:
+      - automate-merging:
           requires:
             - coverage
+      - deployment:
+          requires:
+            - automate-merging
+          filters:
+            branches:
+              only: master
