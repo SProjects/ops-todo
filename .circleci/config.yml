@@ -158,17 +158,14 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: Configure git user
-          command: |
-            git config --global user.email "ci@circleci"
-            git config --global user.name "Circle CI"
       - add_ssh_keys:
           fingerprints:
             - "70:20:36:38:3b:3a:b4:a5:c3:08:7e:2e:54:04:a6:1c"
       - run:
-          name: merge develop into master
+          name: Merge develop into master
           command: |
+            git config --global user.email "ci@circleci"
+            git config --global user.name "Circle CI"
             git merge --no-ff develop -m "[skip ci] Merges develop build ${CIRCLE_BUILD_NUM} into master"
             git push origin master
 
